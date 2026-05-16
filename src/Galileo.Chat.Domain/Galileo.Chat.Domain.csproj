@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>Galileo.Chat.Domain</RootNamespace>
+    <AssemblyName>Galileo.Chat.Domain</AssemblyName>
+  </PropertyGroup>
+
+</Project>

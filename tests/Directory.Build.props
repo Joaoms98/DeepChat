@@ -1,0 +1,12 @@
+<Project>
+
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <PropertyGroup>
+    <!-- xUnit convention: underscored test names (CA1707), parameter-validation in
+         tests is intentional (CA1062), throwing generic exceptions in arrange-blocks
+         is fine (CA1031). Silenced ONLY for test projects via this nested props. -->
+    <NoWarn>$(NoWarn);CA1707;CA1062;CA1031;CA1812;CA2007</NoWarn>
+  </PropertyGroup>
+
+</Project>

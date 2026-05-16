@@ -1,0 +1,58 @@
+# .NET build outputs
+bin/
+obj/
+out/
+publish/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# Test results
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+!**/[Pp]ackages/build/
+
+# SQLite local DBs (NEVER commit chat data)
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Secrets / certs
+*.pfx
+*.pem
+*.key
+secrets.json
+appsettings.Development.json
+appsettings.Production.json
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Rider
+*.DotSettings.user
+
+# JetBrains
+*.sln.iml

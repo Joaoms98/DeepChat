@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <RootNamespace>Galileo.Chat.Server</RootNamespace>
+    <AssemblyName>Galileo.Chat.Server</AssemblyName>
+    <UserSecretsId>deepchat-server-3b9a1f2e-4c5d-4a8b-9e1c-7d2f8a6b3c4e</UserSecretsId>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Galileo.Chat.Domain\Galileo.Chat.Domain.csproj" />
+    <ProjectReference Include="..\Galileo.Chat.Infrastructure\Galileo.Chat.Infrastructure.csproj" />
+    <ProjectReference Include="..\Galileo.Chat.Shared\Galileo.Chat.Shared.csproj" />
+    <ProjectReference Include="..\Galileo.Chat.Crypto\Galileo.Chat.Crypto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Galileo.Chat.Server.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.MessagePack" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Sinks.Console" />
+    <PackageReference Include="Serilog.Sinks.File" />
+  </ItemGroup>
+
+</Project>

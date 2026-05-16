@@ -1,0 +1,99 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C745F631-9FB4-46E3-9388-D12FA6112045}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Domain", "src\Galileo.Chat.Domain\Galileo.Chat.Domain.csproj", "{462E06EA-A994-429E-AA23-792224645124}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Crypto", "src\Galileo.Chat.Crypto\Galileo.Chat.Crypto.csproj", "{180F26F7-DF62-424E-B124-87C1ED1C3A1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Shared", "src\Galileo.Chat.Shared\Galileo.Chat.Shared.csproj", "{12194E1E-DE6F-4AE8-92A8-D6C52E002C15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Infrastructure", "src\Galileo.Chat.Infrastructure\Galileo.Chat.Infrastructure.csproj", "{8E499614-81A7-4A01-BF17-3209E88520EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Server", "src\Galileo.Chat.Server\Galileo.Chat.Server.csproj", "{7B3D020E-25E6-4138-A1EE-A56065325BF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Client", "src\Galileo.Chat.Client\Galileo.Chat.Client.csproj", "{7031BF35-4F68-4F84-80EB-8F286306BDC2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{6BBC129A-4251-4338-89FF-5D69C7AC3D95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Domain.Tests", "tests\Galileo.Chat.Domain.Tests\Galileo.Chat.Domain.Tests.csproj", "{517A7C0E-162E-4527-9498-4000A8861A80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Crypto.Tests", "tests\Galileo.Chat.Crypto.Tests\Galileo.Chat.Crypto.Tests.csproj", "{9CC666DF-C0DD-4451-B779-0A491AD8853B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Infrastructure.Tests", "tests\Galileo.Chat.Infrastructure.Tests\Galileo.Chat.Infrastructure.Tests.csproj", "{2F650DCA-E54B-48FB-A77B-590F67662C40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Server.Tests", "tests\Galileo.Chat.Server.Tests\Galileo.Chat.Server.Tests.csproj", "{C3E36812-B993-4625-AE5A-BDE377D93558}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galileo.Chat.Client.Tests", "tests\Galileo.Chat.Client.Tests\Galileo.Chat.Client.Tests.csproj", "{A3F5EFB0-8B7F-4B88-9B8C-CB6223481D64}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{462E06EA-A994-429E-AA23-792224645124}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{462E06EA-A994-429E-AA23-792224645124}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{462E06EA-A994-429E-AA23-792224645124}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{462E06EA-A994-429E-AA23-792224645124}.Release|Any CPU.Build.0 = Release|Any CPU
+		{180F26F7-DF62-424E-B124-87C1ED1C3A1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{180F26F7-DF62-424E-B124-87C1ED1C3A1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{180F26F7-DF62-424E-B124-87C1ED1C3A1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{180F26F7-DF62-424E-B124-87C1ED1C3A1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12194E1E-DE6F-4AE8-92A8-D6C52E002C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12194E1E-DE6F-4AE8-92A8-D6C52E002C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12194E1E-DE6F-4AE8-92A8-D6C52E002C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12194E1E-DE6F-4AE8-92A8-D6C52E002C15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E499614-81A7-4A01-BF17-3209E88520EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E499614-81A7-4A01-BF17-3209E88520EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E499614-81A7-4A01-BF17-3209E88520EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E499614-81A7-4A01-BF17-3209E88520EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B3D020E-25E6-4138-A1EE-A56065325BF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B3D020E-25E6-4138-A1EE-A56065325BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B3D020E-25E6-4138-A1EE-A56065325BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B3D020E-25E6-4138-A1EE-A56065325BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7031BF35-4F68-4F84-80EB-8F286306BDC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7031BF35-4F68-4F84-80EB-8F286306BDC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7031BF35-4F68-4F84-80EB-8F286306BDC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7031BF35-4F68-4F84-80EB-8F286306BDC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{517A7C0E-162E-4527-9498-4000A8861A80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{517A7C0E-162E-4527-9498-4000A8861A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{517A7C0E-162E-4527-9498-4000A8861A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{517A7C0E-162E-4527-9498-4000A8861A80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC666DF-C0DD-4451-B779-0A491AD8853B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC666DF-C0DD-4451-B779-0A491AD8853B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC666DF-C0DD-4451-B779-0A491AD8853B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC666DF-C0DD-4451-B779-0A491AD8853B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F650DCA-E54B-48FB-A77B-590F67662C40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F650DCA-E54B-48FB-A77B-590F67662C40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F650DCA-E54B-48FB-A77B-590F67662C40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F650DCA-E54B-48FB-A77B-590F67662C40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3E36812-B993-4625-AE5A-BDE377D93558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3E36812-B993-4625-AE5A-BDE377D93558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3E36812-B993-4625-AE5A-BDE377D93558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3E36812-B993-4625-AE5A-BDE377D93558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3F5EFB0-8B7F-4B88-9B8C-CB6223481D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3F5EFB0-8B7F-4B88-9B8C-CB6223481D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3F5EFB0-8B7F-4B88-9B8C-CB6223481D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3F5EFB0-8B7F-4B88-9B8C-CB6223481D64}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{462E06EA-A994-429E-AA23-792224645124} = {C745F631-9FB4-46E3-9388-D12FA6112045}
+		{180F26F7-DF62-424E-B124-87C1ED1C3A1D} = {C745F631-9FB4-46E3-9388-D12FA6112045}
+		{12194E1E-DE6F-4AE8-92A8-D6C52E002C15} = {C745F631-9FB4-46E3-9388-D12FA6112045}
+		{8E499614-81A7-4A01-BF17-3209E88520EA} = {C745F631-9FB4-46E3-9388-D12FA6112045}
+		{7B3D020E-25E6-4138-A1EE-A56065325BF9} = {C745F631-9FB4-46E3-9388-D12FA6112045}
+		{7031BF35-4F68-4F84-80EB-8F286306BDC2} = {C745F631-9FB4-46E3-9388-D12FA6112045}
+		{517A7C0E-162E-4527-9498-4000A8861A80} = {6BBC129A-4251-4338-89FF-5D69C7AC3D95}
+		{9CC666DF-C0DD-4451-B779-0A491AD8853B} = {6BBC129A-4251-4338-89FF-5D69C7AC3D95}
+		{2F650DCA-E54B-48FB-A77B-590F67662C40} = {6BBC129A-4251-4338-89FF-5D69C7AC3D95}
+		{C3E36812-B993-4625-AE5A-BDE377D93558} = {6BBC129A-4251-4338-89FF-5D69C7AC3D95}
+		{A3F5EFB0-8B7F-4B88-9B8C-CB6223481D64} = {6BBC129A-4251-4338-89FF-5D69C7AC3D95}
+	EndGlobalSection
+EndGlobal

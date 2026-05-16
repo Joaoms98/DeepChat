@@ -1,0 +1,34 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Authors>Galileo</Authors>
+    <Company>Galileo</Company>
+    <Product>DeepChat</Product>
+    <Copyright>Copyright (c) Galileo</Copyright>
+  </PropertyGroup>
+
+  <!-- Suppress noise from analyzers we don't care about right now.
+       CA1812: avoid uninstantiated internal classes (DI-resolved types trigger this).
+       CA1822: mark members as static — we keep them as instance methods so they can be
+               mocked / replaced via DI in the messaging layer.
+       IDE0011: prefer braces — superseded by .editorconfig (when_multiline). The
+               analyzer still emits IDE0011 in the build pipeline, so we silence it here. -->
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);CA1812;CA1822;IDE0011;CA1848;CA1861;CA1716;CA1305;CA1001;CA1826;CA1416</NoWarn>
+  </PropertyGroup>
+
+</Project>
