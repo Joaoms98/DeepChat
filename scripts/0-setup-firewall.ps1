@@ -2,7 +2,7 @@
 .SYNOPSIS
   Liberates inbound TCP 5666 in Windows Defender Firewall. Run ONCE per host
   machine, in an ELEVATED PowerShell (Win+X -> Terminal Admin). The rule is
-  persistent — won't need to re-run after reboot or network change.
+  persistent - won't need to re-run after reboot or network change.
 
 .PARAMETER Port
   Listening port. Default 5666 (matches scripts/2-host-server.ps1).

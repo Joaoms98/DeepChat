@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
   One-command bootstrap for the DeepChat server. Run this on the machine that
-  will host the chat — it figures out the current LAN IP, updates the client
+  will host the chat - it figures out the current LAN IP, updates the client
   config + ZIP so guests connect to the right address, forces the active
   Wi-Fi profile to Private (if invoked elevated), and finally starts the
   published server bound to 0.0.0.0:5666.
@@ -9,7 +9,7 @@
 .DESCRIPTION
   Solves the recurring pain of "I changed Wi-Fi networks, the client ZIP is
   stale, and Windows defaulted the new network to Public so nobody can reach
-  me." Idempotent — safe to re-run on the same network.
+  me." Idempotent - safe to re-run on the same network.
 
 .PARAMETER Port
   TCP port the server binds. Defaults to 5666 (matches firewall rule we ship).
@@ -18,8 +18,8 @@
   Only refresh config + ZIP. Don't actually start the server.
 
 .EXAMPLE
-  .\scripts\host-server.ps1            # Refresh and start
-  .\scripts\host-server.ps1 -NoServer  # Just refresh artefacts
+  .\scripts\2-host-server.ps1            # Refresh and start
+  .\scripts\2-host-server.ps1 -NoServer  # Just refresh artefacts
 #>
 
 [CmdletBinding()]
@@ -51,32 +51,56 @@ if (-not $ip) {
 Write-Ok "Detected $ip"
 $serverUrl = "http://${ip}:$Port"
 
-# --- 2. Update client appsettings.json -----------------------------------
-$share = Join-Path $PSScriptRoot '..\publish\share'
-$share = [System.IO.Path]::GetFullPath($share)
-$appsettings = Join-Path $share 'appsettings.json'
+# --- 2. Materialize publish\share (idempotent) ---------------------------
+# 1-publish wipes publish/ on every run, so share/ doesn't survive. We rebuild
+# it here from publish\client\deepchat.exe + a fresh appsettings + LEIAME.
+$repoRoot = Split-Path -Parent $PSScriptRoot
+$share = Join-Path $repoRoot 'publish\share'
+$clientExeSrc = Join-Path $repoRoot 'publish\client\deepchat.exe'
 
-if (-not (Test-Path $appsettings)) {
-    Write-Warn "publish\share\appsettings.json missing — was the client published yet?"
-} else {
-    Write-Step "Updating client appsettings.json"
-    $json = Get-Content $appsettings -Raw | ConvertFrom-Json
-    $json.Client.ServerUrl = $serverUrl
-    ($json | ConvertTo-Json -Depth 6) | Set-Content -LiteralPath $appsettings -Encoding UTF8
-    Write-Ok "ServerUrl -> $serverUrl"
+if (-not (Test-Path $clientExeSrc)) {
+    throw "publish\client\deepchat.exe not found - run .\scripts\1-publish.ps1 first."
+}
+
+New-Item -ItemType Directory -Force -Path $share | Out-Null
+Copy-Item -Path $clientExeSrc -Destination (Join-Path $share 'deepchat.exe') -Force
+
+$appsettings = Join-Path $share 'appsettings.json'
+Write-Step "Writing $appsettings"
+@{
+    Client = @{
+        ServerUrl        = $serverUrl
+        DefaultRoom      = 'backend'
+        AllowInsecureTls = $true
+    }
+} | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $appsettings -Encoding UTF8
+Write-Ok "ServerUrl -> $serverUrl"
+
+$leiame = Join-Path $share 'LEIAME.txt'
+if (-not (Test-Path $leiame)) {
+    @"
+DeepChat - Cliente LAN
+======================
+
+1. Mantenha deepchat.exe e appsettings.json na MESMA pasta.
+2. Double-click em deepchat.exe.
+   (SmartScreen pode alertar - 'Mais informacoes' -> 'Executar mesmo assim'.)
+3. Menu inicial: Registrar (1a vez) ou Entrar.
+4. Escolha sala existente ou crie uma. Passphrase combinada por fora.
+5. Compare o 'Fingerprint da chave' com a pessoa que te convidou.
+
+A passphrase NUNCA passa pelo servidor. Senha de login e passphrase
+sao coisas separadas. Historico de mensagens apaga em 24h.
+"@ | Set-Content -LiteralPath $leiame -Encoding UTF8
+    Write-Ok "Created $leiame"
 }
 
 # --- 3. Re-zip distribution package --------------------------------------
-$zip = Join-Path $PSScriptRoot '..\publish\deepchat-cliente.zip'
-$zip = [System.IO.Path]::GetFullPath($zip)
-if (Test-Path $share) {
-    Write-Step "Repacking $zip"
-    Compress-Archive -Path (Join-Path $share '*') -DestinationPath $zip -Force
-    $size = [math]::Round((Get-Item $zip).Length / 1MB, 2)
-    Write-Ok "$zip (${size} MB)"
-} else {
-    Write-Warn "Skipping ZIP — share folder not found."
-}
+$zip = Join-Path $repoRoot 'publish\deepchat-cliente.zip'
+Write-Step "Repacking $zip"
+Compress-Archive -Path (Join-Path $share '*') -DestinationPath $zip -Force
+$size = [math]::Round((Get-Item $zip).Length / 1MB, 2)
+Write-Ok "$zip ($size MB)"
 
 # --- 4. Force the active network profile to Private ----------------------
 # Default Windows behaviour: every new Wi-Fi starts as Public, which makes
@@ -129,7 +153,7 @@ if ($NoServer) {
 $serverExe = Join-Path $PSScriptRoot '..\publish\server\Galileo.Chat.Server.exe'
 $serverExe = [System.IO.Path]::GetFullPath($serverExe)
 if (-not (Test-Path $serverExe)) {
-    throw "Server EXE not found at $serverExe — run .\scripts\1-publish.ps1 first."
+    throw "Server EXE not found at $serverExe - run .\scripts\1-publish.ps1 first."
 }
 
 # Free the port if a previous server is still bound.
