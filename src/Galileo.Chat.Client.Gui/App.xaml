@@ -1,0 +1,23 @@
+<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Galileo.Chat.Client.Gui.ViewModels"
+             xmlns:views="clr-namespace:Galileo.Chat.Client.Gui.Views"
+             x:Class="Galileo.Chat.Client.Gui.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                <views:LoginView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:RoomsViewModel}">
+                <views:RoomsView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ChatViewModel}">
+                <views:ChatView />
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

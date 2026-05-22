@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- WPF é exclusivo do Windows. No Windows compilamos a GUI real em
+       net9.0-windows; em outros SOs (CI/Linux) o projeto degrada para um
+       placeholder net8.0 mínimo, para que `dotnet build` da solução inteira
+       não quebre fora do Windows. Ver README (seção Build). -->
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>..\Galileo.Chat.Client\deepchat.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RootNamespace>Galileo.Chat.Client.Gui</RootNamespace>
+    <AssemblyName>DeepChat</AssemblyName>
+  </PropertyGroup>
+
+  <!-- Único arquivo compilado no fallback não-Windows (evita CS2008). -->
+  <ItemGroup Condition="'$(OS)' != 'Windows_NT'">
+    <Compile Include="Platform/Unsupported.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Galileo.Chat.Client.Core\Galileo.Chat.Client.Core.csproj" />
+    <ProjectReference Include="..\Galileo.Chat.Shared\Galileo.Chat.Shared.csproj" />
+    <ProjectReference Include="..\Galileo.Chat.Crypto\Galileo.Chat.Crypto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
