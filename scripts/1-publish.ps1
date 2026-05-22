@@ -49,10 +49,22 @@ function Publish-Project {
 Publish-Project "src/Galileo.Chat.Server/Galileo.Chat.Server.csproj" "server"
 Publish-Project "src/Galileo.Chat.Client/Galileo.Chat.Client.csproj" "client"
 
+# Cliente gráfico (WPF) é Windows-only — só publica para runtimes win-*.
+$guiPublished = $false
+if ($Runtime -like "win-*") {
+    Publish-Project "src/Galileo.Chat.Client.Gui/Galileo.Chat.Client.Gui.csproj" "gui"
+    $guiPublished = $true
+} else {
+    Write-Host "==> Pulando GUI (WPF) — Windows-only; runtime atual: $Runtime" -ForegroundColor DarkYellow
+}
+
 Write-Host ""
 Write-Host "==> Done." -ForegroundColor Green
 Write-Host "  Server: $(Join-Path $publishRoot 'server\Galileo.Chat.Server.exe')" -ForegroundColor Gray
-Write-Host "  Client: $(Join-Path $publishRoot 'client\deepchat.exe')" -ForegroundColor Gray
+Write-Host "  Client (console): $(Join-Path $publishRoot 'client\deepchat.exe')" -ForegroundColor Gray
+if ($guiPublished) {
+    Write-Host "  Client (GUI):     $(Join-Path $publishRoot 'gui\DeepChat.exe')" -ForegroundColor Gray
+}
 Write-Host ""
 Write-Host "Next steps:" -ForegroundColor Yellow
 Write-Host "  1. Copy publish\server to the host machine; edit appsettings.Production.json"

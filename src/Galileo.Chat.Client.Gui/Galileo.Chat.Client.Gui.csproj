@@ -1,16 +1,31 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <!-- WPF needs the Windows desktop targeting pack. Only the .NET 9 WindowsDesktop
-         runtime is installed on this machine, so the GUI targets net9.0-windows while
-         the rest of the solution stays on net8.0 (the SDK builds both). -->
+  <!-- WPF é exclusivo do Windows. No Windows compilamos a GUI real em
+       net9.0-windows; em outros SOs (CI/Linux) o projeto degrada para um
+       placeholder net8.0 mínimo, para que `dotnet build` da solução inteira
+       não quebre fora do Windows. Ver README (seção Build). -->
+  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
     <TargetFramework>net9.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <UseWPF>true</UseWPF>
-    <RootNamespace>Galileo.Chat.Client.Gui</RootNamespace>
-    <AssemblyName>DeepChat</AssemblyName>
     <ApplicationIcon>..\Galileo.Chat.Client\deepchat.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RootNamespace>Galileo.Chat.Client.Gui</RootNamespace>
+    <AssemblyName>DeepChat</AssemblyName>
+  </PropertyGroup>
+
+  <!-- Único arquivo compilado no fallback não-Windows (evita CS2008). -->
+  <ItemGroup Condition="'$(OS)' != 'Windows_NT'">
+    <Compile Include="Platform/Unsupported.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Galileo.Chat.Client.Core\Galileo.Chat.Client.Core.csproj" />

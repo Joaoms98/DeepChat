@@ -37,7 +37,15 @@ DeepChat/
 
 ## Build
 
-Requires .NET 8.0.417 SDK (pinned in `global.json`).
+A maior parte da solução é `net8.0`. O cliente gráfico (`Galileo.Chat.Client.Gui`)
+é WPF e alvo **`net9.0-windows`**, então **buildar a solução completa exige o SDK
+.NET 9** (um alvo net9 não compila sob SDK 8). Por isso o `global.json` usa
+`rollForward: latestMajor` — com o SDK 9 instalado, ele é selecionado
+automaticamente; o restante dos projetos continua compilando como net8.0.
+
+> A GUI é Windows-only (WPF). Em Linux/macOS ela degrada para um placeholder
+> net8.0, então `dotnet build` da solução não quebra fora do Windows — mas a
+> interface gráfica de fato só roda no Windows.
 
 ```powershell
 dotnet tool restore
