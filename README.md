@@ -24,7 +24,9 @@ DeepChat/
 │   ├── Galileo.Chat.Shared/          DTOs / Hub contracts (cliente↔servidor)
 │   ├── Galileo.Chat.Infrastructure/  EF Core, SQLite, JWT, Argon2 hasher
 │   ├── Galileo.Chat.Server/          ASP.NET Core host + SignalR hub
-│   └── Galileo.Chat.Client/          Console + Spectre.Console
+│   ├── Galileo.Chat.Client.Core/     Lógica de cliente reutilizável (SignalR, crypto, auth) — console + GUI
+│   ├── Galileo.Chat.Client/          Console + Spectre.Console
+│   └── Galileo.Chat.Client.Gui/      Cliente gráfico WPF (net9.0-windows)
 └── tests/
     ├── Galileo.Chat.Domain.Tests/         (102 tests)
     ├── Galileo.Chat.Crypto.Tests/         (68 tests)
@@ -55,13 +57,26 @@ dotnet run
 # Listens on http://localhost:5000
 ```
 
-**Client:**
+**Client (console):**
 
 ```powershell
 cd src\Galileo.Chat.Client
 dotnet run
 # Prompts for server URL, credentials (offers register), room name, room passphrase.
 ```
+
+**Client (GUI / WPF):**
+
+```powershell
+cd src\Galileo.Chat.Client.Gui
+dotnet run
+# Janela: login/registro → escolher/criar sala + passphrase → tela de chat.
+```
+
+Ambos os clientes compartilham `Galileo.Chat.Client.Core` (conexão SignalR, crypto, auth)
+e leem `appsettings.json` (seção `Client`) para o `ServerUrl`. A GUI alvo `net9.0-windows`
+porque só o WindowsDesktop runtime 9.x está instalado nas máquinas de dev; o restante da
+solução continua em `net8.0`.
 
 ## Hospedando o servidor numa LAN
 

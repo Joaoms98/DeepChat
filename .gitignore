@@ -13,6 +13,9 @@ publish/
 .idea/
 .vscode/
 
+# Claude Code (local settings / transcripts)
+.claude/
+
 # Test results
 TestResults/
 coverage/
