@@ -32,7 +32,7 @@ public static class CatSplash
         "          ######################      ######      ",
     };
 
-    public static void Play(IAnsiConsole console, int delayMsPerPixel = 1)
+    public static void Play(IAnsiConsole console, int delayMsPerPixel = 3)
     {
         var height = _art.Length;
         var width = _art.Max(l => l.Length);
